@@ -5,60 +5,436 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My GitHub Page</title>
     <style>
+        :root {
+            --primary-color: #2563eb;
+            --text-color: #333;
+            --bg-color: #f5f5f5;
+            --card-bg: white;
+            --shadow-color: rgba(0,0,0,0.1);
+            --nav-bg: white;
+            --nav-text: #666;
+            --nav-active: #333;
+            --nav-hover: #f0f0f0;
+        }
+
+        [data-theme="dark"] {
+            --primary-color: #3b82f6;
+            --text-color: #e5e5e5;
+            --bg-color: #1a1a1a;
+            --card-bg: #2d2d2d;
+            --shadow-color: rgba(0,0,0,0.3);
+            --nav-bg: #2d2d2d;
+            --nav-text: #a0a0a0;
+            --nav-active: #e5e5e5;
+            --nav-hover: #3d3d3d;
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
-            color: #333;
-            max-width: 1200px;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+        }
+
+        .container {
+            max-width: 1400px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 2rem;
         }
 
         header {
             text-align: center;
-            padding: 2rem 0;
+            padding: 3rem 0;
+            background-color: var(--card-bg);
             margin-bottom: 2rem;
+            box-shadow: 0 2px 4px var(--shadow-color);
+            position: relative;
         }
 
-        main {
+        /* Theme Toggle */
+        .theme-toggle {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-color);
+            transition: background-color 0.3s ease;
+        }
+
+        .theme-toggle:hover {
+            background-color: var(--nav-hover);
+        }
+
+        .theme-toggle svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        /* Modern Navigation Styles */
+        .tab-nav {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+            background: var(--nav-bg);
+            padding: 0.5rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 4px var(--shadow-color);
+            position: sticky;
+            top: 1rem;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        .tab-button {
+            padding: 0.8rem 1.5rem;
+            border: none;
+            background: none;
+            cursor: pointer;
+            font-size: 1rem;
+            color: var(--nav-text);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tab-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--primary-color);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: -1;
+        }
+
+        .tab-button:hover {
+            color: var(--nav-active);
+        }
+
+        .tab-button:hover::before {
+            opacity: 0.1;
+        }
+
+        .tab-button.active {
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        .tab-button.active::before {
+            opacity: 0.15;
+        }
+
+        /* Section Styles */
+        .section {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
             padding: 1rem;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px var(--shadow-color);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px var(--shadow-color);
+        }
+
+        .card-image {
+            width: 100%;
+            height: 200px;
+            background-color: var(--nav-hover);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--nav-text);
+        }
+
+        .card-content {
+            padding: 1.5rem;
+        }
+
+        .card h3 {
+            margin-bottom: 0.5rem;
+            color: var(--text-color);
+        }
+
+        .card p {
+            color: var(--nav-text);
+            font-size: 0.9rem;
+        }
+
+        /* Experience Section Styles */
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem 0;
+        }
+
+        .timeline-item {
+            background: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 4px var(--shadow-color);
+        }
+
+        .timeline-item h3 {
+            color: var(--text-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-item .date {
+            color: var(--nav-text);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Knowledge Section Styles */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+            padding: 1rem;
+        }
+
+        .skill-card {
+            background: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 4px var(--shadow-color);
+        }
+
+        .skill-card h3 {
+            margin-bottom: 1rem;
+            color: var(--text-color);
+        }
+
+        .skill-list {
+            list-style: none;
+        }
+
+        .skill-list li {
+            margin-bottom: 0.5rem;
+            color: var(--nav-text);
         }
 
         footer {
             text-align: center;
-            padding: 1rem;
-            margin-top: 2rem;
-            border-top: 1px solid #eee;
+            padding: 2rem;
+            margin-top: 3rem;
+            background-color: var(--card-bg);
+            box-shadow: 0 -2px 4px var(--shadow-color);
         }
 
         @media (max-width: 768px) {
-            body {
-                padding: 10px;
+            .container {
+                padding: 1rem;
+            }
+            
+            .grid {
+                grid-template-columns: 1fr;
+            }
+
+            .tab-nav {
+                flex-direction: column;
+                align-items: stretch;
+                position: relative;
+                top: 0;
+            }
+
+            .tab-button {
+                width: 100%;
             }
         }
     </style>
 </head>
 <body>
     <header>
-        <h1>Welcome to My GitHub Page</h1>
-        <p>This is my personal website hosted on GitHub Pages</p>
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+            </svg>
+        </button>
+        <h1>My Portfolio</h1>
+        <p>Welcome to my creative space</p>
     </header>
 
-    <main>
-        <section>
-            <h2>About</h2>
-            <p>여기에 내용을 추가하세요.</p>
+    <div class="container">
+        <nav class="tab-nav">
+            <button class="tab-button active" data-tab="portfolio">Portfolio</button>
+            <button class="tab-button" data-tab="experience">Experience</button>
+            <button class="tab-button" data-tab="knowledge">Knowledge</button>
+        </nav>
+
+        <!-- Portfolio Section -->
+        <section id="portfolio" class="section active">
+            <div class="grid">
+                <div class="card" onclick="window.location.href='portfolio/project1.html'" style="cursor: pointer;">
+                    <div class="card-image">프로젝트 1 이미지</div>
+                    <div class="card-content">
+                        <h3>프로젝트 1</h3>
+                        <p>프로젝트 1에 대한 간단한 설명입니다.</p>
+                    </div>
+                </div>
+                <div class="card" onclick="window.location.href='portfolio/project2.html'" style="cursor: pointer;">
+                    <div class="card-image">프로젝트 2 이미지</div>
+                    <div class="card-content">
+                        <h3>프로젝트 2</h3>
+                        <p>프로젝트 2에 대한 간단한 설명입니다.</p>
+                    </div>
+                </div>
+                <div class="card" onclick="window.location.href='portfolio/project3.html'" style="cursor: pointer;">
+                    <div class="card-image">프로젝트 3 이미지</div>
+                    <div class="card-content">
+                        <h3>프로젝트 3</h3>
+                        <p>프로젝트 3에 대한 간단한 설명입니다.</p>
+                    </div>
+                </div>
+            </div>
         </section>
-    </main>
+
+        <!-- Experience Section -->
+        <section id="experience" class="section">
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h3>Senior Developer</h3>
+                    <div class="date">2022 - Present</div>
+                    <p>Description of your role and achievements.</p>
+                </div>
+                <div class="timeline-item">
+                    <h3>Junior Developer</h3>
+                    <div class="date">2020 - 2022</div>
+                    <p>Description of your role and achievements.</p>
+                </div>
+                <div class="timeline-item">
+                    <h3>Intern</h3>
+                    <div class="date">2019 - 2020</div>
+                    <p>Description of your role and achievements.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Knowledge Section -->
+        <section id="knowledge" class="section">
+            <div class="skills-grid">
+                <div class="skill-card" onclick="location.href='knowledge/languages.html'" style="cursor: pointer;">
+                    <h3>Programming Languages</h3>
+                    <ul class="skill-list">
+                        <li>JavaScript</li>
+                        <li>Python</li>
+                        <li>Java</li>
+                    </ul>
+                </div>
+                <div class="skill-card" onclick="location.href='knowledge/frameworks.html'" style="cursor: pointer;">
+                    <h3>Frameworks</h3>
+                    <ul class="skill-list">
+                        <li>React</li>
+                        <li>Node.js</li>
+                        <li>Django</li>
+                    </ul>
+                </div>
+                <div class="skill-card" onclick="location.href='knowledge/tools.html'" style="cursor: pointer;">
+                    <h3>Tools & Technologies</h3>
+                    <ul class="skill-list">
+                        <li>Git</li>
+                        <li>Docker</li>
+                        <li>AWS</li>
+                    </ul>
+                </div>
+                <div class="skill-card" onclick="location.href='knowledge/libraries.html'" style="cursor: pointer;">
+                    <h3>Libraries</h3>
+                    <ul class="skill-list">
+                        <li>TensorFlow</li>
+                        <li>Pandas</li>
+                        <li>NumPy</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </div>
 
     <footer>
-        <p>&copy; 2024 My GitHub Page. All rights reserved.</p>
+        <p>&copy; 2024 My Portfolio. All rights reserved.</p>
     </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Tab Navigation
+            const tabButtons = document.querySelectorAll('.tab-button');
+            const sections = document.querySelectorAll('.section');
+
+            tabButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    tabButtons.forEach(btn => btn.classList.remove('active'));
+                    sections.forEach(section => section.classList.remove('active'));
+
+                    button.classList.add('active');
+                    const sectionId = button.getAttribute('data-tab');
+                    document.getElementById(sectionId).classList.add('active');
+                });
+            });
+
+            // Dark Mode Toggle
+            const themeToggle = document.getElementById('themeToggle');
+            const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+            
+            // Check for saved theme preference or use system preference
+            const currentTheme = localStorage.getItem('theme') || 
+                               (prefersDarkScheme.matches ? 'dark' : 'light');
+            
+            if (currentTheme === 'dark') {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            }
+
+            themeToggle.addEventListener('click', () => {
+                const currentTheme = document.documentElement.getAttribute('data-theme');
+                const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+                
+                document.documentElement.setAttribute('data-theme', newTheme);
+                localStorage.setItem('theme', newTheme);
+            });
+        });
+    </script>
 </body>
 </html>

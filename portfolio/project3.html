@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>프로젝트 3 - 포트폴리오</title>
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --text-color: #333;
+            --bg-color: #f5f5f5;
+            --card-bg: white;
+            --shadow-color: rgba(0,0,0,0.1);
+        }
+
+        [data-theme="dark"] {
+            --primary-color: #3b82f6;
+            --text-color: #e5e5e5;
+            --bg-color: #1a1a1a;
+            --card-bg: #2d2d2d;
+            --shadow-color: rgba(0,0,0,0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.5rem 1rem;
+            background: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            transition: opacity 0.3s ease;
+        }
+
+        .back-button:hover {
+            opacity: 0.9;
+        }
+
+        .project-header {
+            margin-bottom: 3rem;
+        }
+
+        .project-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        .project-meta {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 1rem;
+            color: var(--text-color);
+            opacity: 0.8;
+        }
+
+        .project-image {
+            width: 100%;
+            height: 400px;
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 4px var(--shadow-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-color);
+            font-size: 1.2rem;
+        }
+
+        .project-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+        }
+
+        .project-description {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 4px var(--shadow-color);
+        }
+
+        .project-description h2 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .project-description p {
+            margin-bottom: 1rem;
+        }
+
+        .project-details {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 4px var(--shadow-color);
+        }
+
+        .detail-section {
+            margin-bottom: 2rem;
+        }
+
+        .detail-section h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tech-badge {
+            padding: 0.5rem 1rem;
+            background: var(--shadow-color);
+            border-radius: 20px;
+            font-size: 0.9rem;
+            color: var(--text-color);
+        }
+
+        .project-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .project-link {
+            padding: 0.5rem 1rem;
+            background: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: opacity 0.3s ease;
+        }
+
+        .project-link:hover {
+            opacity: 0.9;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+            
+            .project-content {
+                grid-template-columns: 1fr;
+            }
+
+            .project-meta {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .project-image {
+                height: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="../index.html" class="back-button">← 포트폴리오로 돌아가기</a>
+        
+        <div class="project-header">
+            <h1>프로젝트 3</h1>
+            <div class="project-meta">
+                <span>기간: 4개월</span>
+                <span>역할: 풀스택 개발자</span>
+                <span>상태: 완료</span>
+            </div>
+        </div>
+
+        <div class="project-image">
+            프로젝트 스크린샷
+        </div>
+
+        <div class="project-content">
+            <div class="project-description">
+                <h2>프로젝트 개요</h2>
+                <p>이 프로젝트는 기업용 데이터 분석 플랫폼입니다. 대용량 데이터를 실시간으로 처리하고 시각화하는 기능을 제공합니다.</p>
+                
+                <h2>주요 기능</h2>
+                <ul>
+                    <li>실시간 데이터 처리: 초당 10만 건 이상의 데이터 처리</li>
+                    <li>대시보드 커스터마이징: 드래그 앤 드롭 인터페이스</li>
+                    <li>데이터 시각화: 다양한 차트와 그래프 지원</li>
+                </ul>
+
+                <h2>도전과 해결</h2>
+                <p>대용량 데이터 처리 과정에서 발생한 메모리 이슈를 분산 처리 아키텍처와 캐싱 전략을 통해 해결했습니다.</p>
+            </div>
+
+            <div class="project-details">
+                <div class="detail-section">
+                    <h3>사용 기술</h3>
+                    <div class="tech-stack">
+                        <span class="tech-badge">Python</span>
+                        <span class="tech-badge">Apache Spark</span>
+                        <span class="tech-badge">React</span>
+                        <span class="tech-badge">Kubernetes</span>
+                    </div>
+                </div>
+
+                <div class="detail-section">
+                    <h3>프로젝트 링크</h3>
+                    <div class="project-links">
+                        <a href="#" class="project-link">데모 보기</a>
+                        <a href="#" class="project-link">GitHub</a>
+                    </div>
+                </div>
+
+                <div class="detail-section">
+                    <h3>주요 성과</h3>
+                    <ul>
+                        <li>데이터 처리 속도 3배 향상</li>
+                        <li>시스템 안정성 99.9% 달성</li>
+                        <li>사용자 만족도 45% 향상</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 다크 모드 감지
+        const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+        const currentTheme = localStorage.getItem('theme') || 
+                           (prefersDarkScheme.matches ? 'dark' : 'light');
+        
+        if (currentTheme === 'dark') {
+            document.documentElement.setAttribute('data-theme', 'dark');
+        }
+    </script>
+</body>
+</html> 

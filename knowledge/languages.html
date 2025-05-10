@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Programming Languages - My Portfolio</title>
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --text-color: #333;
+            --bg-color: #f5f5f5;
+            --card-bg: white;
+            --shadow-color: rgba(0,0,0,0.1);
+        }
+
+        [data-theme="dark"] {
+            --primary-color: #3b82f6;
+            --text-color: #e5e5e5;
+            --bg-color: #1a1a1a;
+            --card-bg: #2d2d2d;
+            --shadow-color: rgba(0,0,0,0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.5rem 1rem;
+            background: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            transition: opacity 0.3s ease;
+        }
+
+        .back-button:hover {
+            opacity: 0.9;
+        }
+
+        .language-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .language-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 2px 4px var(--shadow-color);
+        }
+
+        .language-card h2 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .language-card p {
+            color: var(--text-color);
+            margin-bottom: 1rem;
+        }
+
+        .skill-level {
+            display: flex;
+            align-items: center;
+            margin-top: 1rem;
+        }
+
+        .skill-bar {
+            flex: 1;
+            height: 8px;
+            background: var(--shadow-color);
+            border-radius: 4px;
+            margin-left: 1rem;
+            overflow: hidden;
+        }
+
+        .skill-progress {
+            height: 100%;
+            background: var(--primary-color);
+            border-radius: 4px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+            
+            .language-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="../index.html" class="back-button">← Back to Portfolio</a>
+        
+        <h1>Programming Languages</h1>
+        <p>Here's a detailed overview of my programming language skills and experience.</p>
+
+        <div class="language-grid">
+            <div class="language-card">
+                <h2>JavaScript</h2>
+                <p>Modern web development, ES6+, Node.js, and frontend frameworks.</p>
+                <div class="skill-level">
+                    <span>Expert</span>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 90%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="language-card">
+                <h2>Python</h2>
+                <p>Data analysis, machine learning, and backend development.</p>
+                <div class="skill-level">
+                    <span>Advanced</span>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 85%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="language-card">
+                <h2>Java</h2>
+                <p>Enterprise applications, Android development, and backend services.</p>
+                <div class="skill-level">
+                    <span>Intermediate</span>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 75%"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Dark mode detection
+        const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+        const currentTheme = localStorage.getItem('theme') || 
+                           (prefersDarkScheme.matches ? 'dark' : 'light');
+        
+        if (currentTheme === 'dark') {
+            document.documentElement.setAttribute('data-theme', 'dark');
+        }
+    </script>
+</body>
+</html> 

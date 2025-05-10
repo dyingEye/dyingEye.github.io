@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frameworks - My Portfolio</title>
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --text-color: #333;
+            --bg-color: #f5f5f5;
+            --card-bg: white;
+            --shadow-color: rgba(0,0,0,0.1);
+        }
+
+        [data-theme="dark"] {
+            --primary-color: #3b82f6;
+            --text-color: #e5e5e5;
+            --bg-color: #1a1a1a;
+            --card-bg: #2d2d2d;
+            --shadow-color: rgba(0,0,0,0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.5rem 1rem;
+            background: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            transition: opacity 0.3s ease;
+        }
+
+        .back-button:hover {
+            opacity: 0.9;
+        }
+
+        .framework-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .framework-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 2px 4px var(--shadow-color);
+        }
+
+        .framework-card h2 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .framework-card p {
+            color: var(--text-color);
+            margin-bottom: 1rem;
+        }
+
+        .feature-list {
+            list-style: none;
+            margin-top: 1rem;
+        }
+
+        .feature-list li {
+            margin-bottom: 0.5rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .feature-list li::before {
+            content: "•";
+            color: var(--primary-color);
+            position: absolute;
+            left: 0;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+            
+            .framework-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="../index.html" class="back-button">← Back to Portfolio</a>
+        
+        <h1>Frameworks</h1>
+        <p>Here's a detailed overview of the frameworks I work with.</p>
+
+        <div class="framework-grid">
+            <div class="framework-card">
+                <h2>React</h2>
+                <p>A JavaScript library for building user interfaces.</p>
+                <ul class="feature-list">
+                    <li>Component-based architecture</li>
+                    <li>Virtual DOM</li>
+                    <li>State management with Redux</li>
+                    <li>React Hooks</li>
+                </ul>
+            </div>
+
+            <div class="framework-card">
+                <h2>Node.js</h2>
+                <p>JavaScript runtime for server-side development.</p>
+                <ul class="feature-list">
+                    <li>Express.js framework</li>
+                    <li>RESTful API development</li>
+                    <li>WebSocket implementation</li>
+                    <li>Database integration</li>
+                </ul>
+            </div>
+
+            <div class="framework-card">
+                <h2>Django</h2>
+                <p>High-level Python web framework.</p>
+                <ul class="feature-list">
+                    <li>MVT architecture</li>
+                    <li>ORM database handling</li>
+                    <li>Admin interface</li>
+                    <li>Security features</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Dark mode detection
+        const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+        const currentTheme = localStorage.getItem('theme') || 
+                           (prefersDarkScheme.matches ? 'dark' : 'light');
+        
+        if (currentTheme === 'dark') {
+            document.documentElement.setAttribute('data-theme', 'dark');
+        }
+    </script>
+</body>
+</html> 

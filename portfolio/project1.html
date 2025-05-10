@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project 1 - My Portfolio</title>
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --text-color: #333;
+            --bg-color: #f5f5f5;
+            --card-bg: white;
+            --shadow-color: rgba(0,0,0,0.1);
+        }
+
+        [data-theme="dark"] {
+            --primary-color: #3b82f6;
+            --text-color: #e5e5e5;
+            --bg-color: #1a1a1a;
+            --card-bg: #2d2d2d;
+            --shadow-color: rgba(0,0,0,0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.5rem 1rem;
+            background: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            transition: opacity 0.3s ease;
+        }
+
+        .back-button:hover {
+            opacity: 0.9;
+        }
+
+        .project-header {
+            margin-bottom: 3rem;
+        }
+
+        .project-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        .project-meta {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 1rem;
+            color: var(--text-color);
+            opacity: 0.8;
+        }
+
+        .project-image {
+            width: 100%;
+            height: 400px;
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 4px var(--shadow-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-color);
+            font-size: 1.2rem;
+        }
+
+        .project-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+        }
+
+        .project-description {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 4px var(--shadow-color);
+        }
+
+        .project-description h2 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .project-description p {
+            margin-bottom: 1rem;
+        }
+
+        .project-details {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 4px var(--shadow-color);
+        }
+
+        .detail-section {
+            margin-bottom: 2rem;
+        }
+
+        .detail-section h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tech-badge {
+            padding: 0.5rem 1rem;
+            background: var(--shadow-color);
+            border-radius: 20px;
+            font-size: 0.9rem;
+            color: var(--text-color);
+        }
+
+        .project-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .project-link {
+            padding: 0.5rem 1rem;
+            background: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: opacity 0.3s ease;
+        }
+
+        .project-link:hover {
+            opacity: 0.9;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+            
+            .project-content {
+                grid-template-columns: 1fr;
+            }
+
+            .project-meta {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .project-image {
+                height: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="../index.html" class="back-button">← Back to Portfolio</a>
+        
+        <div class="project-header">
+            <h1>Project Title 1</h1>
+            <div class="project-meta">
+                <span>Duration: 3 months</span>
+                <span>Role: Lead Developer</span>
+                <span>Status: Completed</span>
+            </div>
+        </div>
+
+        <div class="project-image">
+            Project Screenshot
+        </div>
+
+        <div class="project-content">
+            <div class="project-description">
+                <h2>Project Overview</h2>
+                <p>Detailed description of the project goes here. Explain the problem you were trying to solve, your approach, and the results achieved.</p>
+                
+                <h2>Key Features</h2>
+                <ul>
+                    <li>Feature 1: Description of the first key feature</li>
+                    <li>Feature 2: Description of the second key feature</li>
+                    <li>Feature 3: Description of the third key feature</li>
+                </ul>
+
+                <h2>Challenges & Solutions</h2>
+                <p>Describe the main challenges faced during the project and how you overcame them. This shows your problem-solving abilities and technical expertise.</p>
+            </div>
+
+            <div class="project-details">
+                <div class="detail-section">
+                    <h3>Technologies Used</h3>
+                    <div class="tech-stack">
+                        <span class="tech-badge">React</span>
+                        <span class="tech-badge">Node.js</span>
+                        <span class="tech-badge">MongoDB</span>
+                        <span class="tech-badge">AWS</span>
+                    </div>
+                </div>
+
+                <div class="detail-section">
+                    <h3>Project Links</h3>
+                    <div class="project-links">
+                        <a href="#" class="project-link">Live Demo</a>
+                        <a href="#" class="project-link">GitHub</a>
+                    </div>
+                </div>
+
+                <div class="detail-section">
+                    <h3>Key Achievements</h3>
+                    <ul>
+                        <li>Achievement 1</li>
+                        <li>Achievement 2</li>
+                        <li>Achievement 3</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Dark mode detection
+        const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+        const currentTheme = localStorage.getItem('theme') || 
+                           (prefersDarkScheme.matches ? 'dark' : 'light');
+        
+        if (currentTheme === 'dark') {
+            document.documentElement.setAttribute('data-theme', 'dark');
+        }
+    </script>
+</body>
+</html> 
